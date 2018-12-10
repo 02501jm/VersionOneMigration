@@ -5,7 +5,7 @@ const fs = require('fs');
 
 
 
-loadEpics = (address, callback) =>{
+loadEpics = () =>{
   var urlDynamic = `https://www14.v1host.com/Laureate/VersionOne/rest-1.v1/Data/Epic/424499`;
   request.get({
     url: urlDynamic,
@@ -21,26 +21,18 @@ fs.writeFile("epic.json", JSON.stringify(response), function(err) {
     if(err) {
         return console.log(err);
     }
-
     console.log("The file was saved!");
 }); 
       console.log('Number of results: ', body.length);
-      //console.log(response);
       if(error){
-        callback('Unable to connect to VersionOneApi.');
+        console.log('Unable to connect to VersionOneApi.');
       } else if (body.length === 0){
-        callback('Unable to find Data.');
+        console.log('Unable to find Data.');
       } else if (body.length >= 1){
-        callback(undefined, body);
+        console.log(body);
       }
     
     });
 }
 
-loadEpics('aa', (error, response) =>{
-  if(error){
-    console.log(error);
-  } else {
-    console.log(response);
-  }
-});
+loadEpics();
