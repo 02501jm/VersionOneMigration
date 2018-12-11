@@ -1,14 +1,11 @@
+
 request = require('request');
 const fs = require('fs');
-//VersionOneToken 1.f/4ay5oOOfXtLK6dtKBkg6EpGuk=
+var getAssets = (url) =>{
+  
 
-
-
-
-loadEpics = () =>{
-  var urlDynamic = `https://www14.v1host.com/Laureate/VersionOne/rest-1.v1/Data/Epic/424499`;
   request.get({
-    url: urlDynamic,
+    url: url,
     json:true,
     auth:{
       'bearer': '1.f/4ay5oOOfXtLK6dtKBkg6EpGuk='
@@ -35,4 +32,6 @@ fs.writeFile("epic.json", JSON.stringify(response), function(err) {
     });
 }
 
-loadEpics();
+module.exports = {
+  getAssets
+}
